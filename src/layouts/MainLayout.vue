@@ -10,7 +10,7 @@
       <q-toolbar>
         <q-toolbar-title>
           <q-avatar class="q-mr-sm">
-            <img src="favicon.png" />
+            <img src="logo.png" />
           </q-avatar>
           {{ $t('navBar.title') }}
         </q-toolbar-title>
