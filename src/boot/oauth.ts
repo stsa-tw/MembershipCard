@@ -30,6 +30,9 @@ export function signOut() {
 
 export default defineBoot(() => {
   Log.setLogger(console);
+  if (window.location.pathname.endsWith('/membership')) {
+    window.location.pathname = '/membership/';
+  }
   if (window.location.search) {
     signingIn.value = true;
     void userManager

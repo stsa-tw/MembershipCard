@@ -14,7 +14,7 @@
           </q-avatar>
           {{ $t('navBar.title') }}
         </q-toolbar-title>
-        <q-btn @click="signOut" :label="$t('common.signOut')" />
+        <q-btn v-if="signedIn" @click="signOut" :label="$t('common.signOut')" />
       </q-toolbar>
 
       <q-tabs align="left">
@@ -30,5 +30,5 @@
 </template>
 
 <script setup lang="ts">
-import { signOut } from '../boot/oauth';
+import { signOut, signedIn } from '../boot/oauth';
 </script>
