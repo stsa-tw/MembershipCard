@@ -17,6 +17,7 @@
   "dependencies": {
     "@chenfengyuan/vue-qrcode": "2",
     "@quasar/extras": "^1.16.4",
+    "axios": "^1.11.0",
     "oidc-client-ts": "^3.3.0",
     "qrcode": "1",
     "quasar": "^2.16.0",

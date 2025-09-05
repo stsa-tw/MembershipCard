@@ -8,6 +8,7 @@
       <img class="watermark" v-if="watermark" src="card_stsa.png" alt="Membership watermark" />
     </transition>
     <vue-qrcode
+      v-if="code"
       :options="{
         errorCorrectionLevel: 'Q',
         width: 0,
@@ -35,10 +36,6 @@ import { ref } from 'vue';
 const $q = useQuasar();
 const mobileScale = Math.min($q.screen.height / $q.screen.width - 0.2, 1.5);
 const watermark = ref(true);
-// const cardRef = ref();
-// const qrWidth = computed(() => {
-//   return 0;
-// });
 const props = defineProps<{
   name: string;
   code: string;
