@@ -4,12 +4,13 @@
 export default {
   navBar: {
     title: 'STSA Membership',
+    home: 'Home',
     card: 'Membership Card',
     scan: 'Scan Cards',
   },
   common: {
     signingIn: 'Signing In...',
-    signIn: 'Sign In',
+    signIn: 'Register / Sign In',
     signOut: 'Sign Out',
   },
 };

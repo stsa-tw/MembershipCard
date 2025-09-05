@@ -18,6 +18,7 @@
       </q-toolbar>
 
       <q-tabs align="left">
+        <q-route-tab href="https://stsa.tw" :label="$t('navBar.home')" />
         <q-route-tab to="/" :label="$t('navBar.card')" />
         <q-route-tab to="/scan" :label="$t('navBar.scan')" />
       </q-tabs>

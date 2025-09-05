@@ -45,6 +45,8 @@ export default defineBoot(() => {
         window.location.search = '';
         signingIn.value = false;
       });
+  } else {
+    window.location.href = window.location.href.replace('?', '');
   }
   void userManager.getUser().then((user) => {
     if (user) {
