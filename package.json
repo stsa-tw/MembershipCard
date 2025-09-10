@@ -15,11 +15,10 @@
     "postinstall": "quasar prepare"
   },
   "dependencies": {
-    "@chenfengyuan/vue-qrcode": "2",
     "@quasar/extras": "^1.16.4",
     "axios": "^1.11.0",
     "oidc-client-ts": "^3.3.0",
-    "qrcode": "1",
+    "qrcode.vue": "^3.6.0",
     "quasar": "^2.16.0",
     "vue": "^3.4.18",
     "vue-i18n": "^11.1.11",
