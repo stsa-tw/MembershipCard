@@ -8,7 +8,8 @@
       <img class="watermark" v-if="watermark" src="card_stsa.png" alt="Membership watermark" />
     </transition>
     <qrcode-svg
-      value="oeiwjrfunsfkieruoijedw"
+      v-if="code"
+      :value="code"
       level="H"
       class="qrcode"
       background="#00000000"
