@@ -50,7 +50,7 @@ async function fetchMembershipCode() {
           Authorization: `Bearer ${signedInUser.value.access_token}`,
         },
       });
-      code.value = response.data.code;
+      code.value = `stsa$${response.data.code}`;
       error.value = false;
     } catch (e) {
       console.error('Failed to fetch membership code:', e);
