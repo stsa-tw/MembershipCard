@@ -25,7 +25,8 @@
         class="text-black"
         :style="`font-size: ${qrSize * 0.1}px; line-height: ${qrSize * 0.15}px`"
       >
-        條碼載入失敗，<br />請點此重新登入
+        {{ $t('membershipCard.errorMsg1') }}<br />
+        {{ $t('membershipCard.errorMsg2') }}
       </div>
     </q-btn>
     <div
