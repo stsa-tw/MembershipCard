@@ -8,7 +8,7 @@
       <img class="watermark" v-if="watermark" src="card_stsa.png" alt="Membership watermark" />
     </transition>
     <qrcode-svg
-      v-if="code"
+      v-if="code && !error"
       :value="code"
       level="H"
       class="qrcode"
@@ -19,7 +19,19 @@
       :size="qrSize"
       :dummy="qrSize"
     />
-    <div class="absolute-bottom text-white" style="text-align: right; margin: min(4vw, 40px)">
+    <q-btn v-if="error" class="errorMsg text-center q-pa-none" flat stack @click="relog">
+      <q-icon name="error" color="red" :size="`${qrSize * 0.3}px`" />
+      <div
+        class="text-black"
+        :style="`font-size: ${qrSize * 0.1}px; line-height: ${qrSize * 0.15}px`"
+      >
+        條碼載入失敗，<br />請點此重新登入
+      </div>
+    </q-btn>
+    <div
+      class="absolute-bottom text-white text-center"
+      style="text-align: right; margin: min(4vw, 40px)"
+    >
       <div style="font-size: min(5vw, 60px)">{{ props.name }}</div>
       <div style="font-size: min(2.5vw, 30px)">會員</div>
     </div>
@@ -29,6 +41,7 @@
 <script setup lang="ts">
 import { QrcodeSvg } from 'qrcode.vue';
 import { useQuasar } from 'quasar';
+import { signIn, signOut } from 'src/boot/oauth';
 import type { ComponentPublicInstance } from 'vue';
 import { computed, ref, useTemplateRef, watch } from 'vue';
 
@@ -40,6 +53,7 @@ const qrSize = ref(0);
 const props = defineProps<{
   name: string;
   code: string;
+  error: boolean;
 }>();
 watch(card, calcQRSize, { deep: true });
 window.addEventListener('resize', calcQRSize);
@@ -59,6 +73,14 @@ function calcQRSize() {
     const el = card.value.$el;
     qrSize.value = Math.max(el.offsetWidth, el.offsetHeight) * 0.35;
   }
+}
+
+async function relog() {
+  console.log('Re-logging in...');
+  await signOut();
+  console.log('Signed out, signing in again...');
+  signIn();
+  console.log('Sign-in initiated.');
 }
 
 watermarkAnimation();
@@ -84,6 +106,11 @@ watermarkAnimation();
   left: 60.2%;
   top: 13.5%;
   scale: 0.8;
+}
+.errorMsg {
+  position: absolute;
+  left: 65.5%;
+  top: 24.5%;
 }
 @media (orientation: portrait) {
   .card {

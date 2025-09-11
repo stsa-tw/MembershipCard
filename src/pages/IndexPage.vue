@@ -1,6 +1,11 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <MembershipCard v-if="signedIn" :name="signedInUser!.profile!.name!" :code="code" />
+    <MembershipCard
+      v-if="signedIn"
+      :name="signedInUser!.profile!.name!"
+      :code="code"
+      :error="error"
+    />
     <div v-else>
       <div v-if="signingIn" class="text-h5">
         <q-spinner class="q-mr-sm" />
@@ -27,6 +32,7 @@ import { Dark } from 'quasar';
 import axios from 'axios';
 
 const code = ref('');
+const error = ref(false);
 const bg = computed(() => (Dark.isActive ? '#121212' : 'white'));
 
 onMounted(async () => {
@@ -38,12 +44,18 @@ async function fetchMembershipCode() {
     void fetchMembershipCode();
   }, 250 * 1000);
   if (signedIn.value && signedInUser.value) {
-    const response = await axios.get(`https://idms.stsa.tw/membership/api/get_code`, {
-      headers: {
-        Authorization: `Bearer ${signedInUser.value.access_token}`,
-      },
-    });
-    code.value = response.data.code;
+    try {
+      const response = await axios.get(`https://idms.stsa.tw/membership/api/get_code`, {
+        headers: {
+          Authorization: `Bearer ${signedInUser.value.access_token}`,
+        },
+      });
+      code.value = response.data.code;
+      error.value = false;
+    } catch (e) {
+      console.error('Failed to fetch membership code:', e);
+      error.value = true;
+    }
   }
 }
 </script>

@@ -24,8 +24,9 @@ export function signIn() {
   void userManager.signinRedirect();
 }
 
-export function signOut() {
-  void userManager.signoutRedirect();
+export async function signOut() {
+  void userManager.signoutSilent();
+  await userManager.removeUser();
 }
 
 export default defineBoot(() => {
@@ -52,9 +53,6 @@ export default defineBoot(() => {
     if (user) {
       signedInUser.value = user;
       signedIn.value = true;
-      void userManager.querySessionStatus().then((proof) => {
-        console.log(proof);
-      });
     }
   });
 });
