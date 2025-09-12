@@ -21,5 +21,6 @@ export default {
     name: '姓名',
     email: '電子郵件',
     username: '使用者名稱',
+    scanAgain: '重新掃描',
   },
 };

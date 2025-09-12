@@ -28,5 +28,6 @@ export default {
     name: 'Name',
     email: 'Email',
     username: 'Username',
+    scanAgain: 'Scan Again',
   },
 };
